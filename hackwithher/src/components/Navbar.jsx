@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import LOGO from "../assets/doctor3-removebg-preview.png";
-import { getAuth, signOut } from "firebase/auth"; // Import Firebase auth methods
-
-
+import { getAuth, signOut } from "firebase/auth"; 
 const Navbar = ({ user }) => {
   const [search, setSearch] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
-
-  // Handle Sign Out
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleSignOut = async () => {
     const auth = getAuth();
     try {
@@ -23,8 +19,6 @@ const Navbar = ({ user }) => {
   return (
     <nav className="bg-pink-500 p-4 flex items-center justify-between gap-5">
       <img src={LOGO} alt="Logo" className="w-20 h-16 rounded-md" />
-
-      {/* Conditionally render Navbar options if user is logged in */}
       {user && (
         <div className="flex gap-5">
           <a href="/periodashboard" className="text-white text-lg font-bold">
