@@ -10,6 +10,8 @@ export default function PeriodCalendar() {
   const [savedDates, setSavedDates] = useState([]);
   const [cycleLength, setCycleLength] = useState(null);
   const [conceive, setConceive] = useState(null);
+  const [fertileWindow, setFertileWindow] = useState([]);
+  const [ovulationDay, setOvulationDay] = useState(null);
 
   // Load saved dates from localStorage on component mount
   useEffect(() => {
@@ -31,6 +33,25 @@ export default function PeriodCalendar() {
   useEffect(() => {
     checkTodayPeriodMessage();
   }, []);
+
+  // Calculate fertile window and ovulation day when conceive is true
+  useEffect(() => {
+    if (conceive && savedDates.length > 0) {
+      const lastSaved = savedDates[savedDates.length - 1];
+      const ovulationDate = new Date(date.getFullYear(), lastSaved.month, lastSaved.firstDay - 14);
+      setOvulationDay(ovulationDate.getDate());
+
+      const fertileStart = new Date(ovulationDate);
+      fertileStart.setDate(fertileStart.getDate() - 5);
+      const fertileEnd = new Date(ovulationDate);
+
+      const fertileDays = [];
+      for (let d = new Date(fertileStart); d <= fertileEnd; d.setDate(d.getDate() + 1)) {
+        fertileDays.push(d.getDate());
+      }
+      setFertileWindow(fertileDays);
+    }
+  }, [conceive, savedDates, date]);
 
   // Handle day selection
   const handleDayClick = (day) => {
@@ -181,6 +202,8 @@ export default function PeriodCalendar() {
                       ? "bg-transparent"
                       : (day === firstDay || day === lastDay)
                       ? "bg-pink-500 text-white"
+                      : fertileWindow.includes(day)
+                      ? "bg-green-500 text-white"
                       : "bg-gray-100 hover:bg-pink-200"
                   }`}
                   onClick={() => day !== null && handleDayClick(day)}
@@ -230,9 +253,11 @@ export default function PeriodCalendar() {
               </button>
             </div>
             {conceive && (
-              <p className="mt-4 text-gray-700">
-                To increase your chances of conceiving, track your ovulation days. Typically, ovulation occurs 14 days before your next period. Maintaining a healthy lifestyle and consulting a doctor can also help!
-              </p>
+              <div className="mt-4 text-gray-700">
+                <p>Your fertile window is from <strong>{fertileWindow[0]}</strong> to <strong>{fertileWindow[fertileWindow.length - 1]}</strong>.</p>
+                <p>Ovulation day: <strong>{ovulationDay}</strong>.</p>
+                <p>To increase your chances of conceiving, track your ovulation days. Typically, ovulation occurs 14 days before your next period. Maintaining a healthy lifestyle and consulting a doctor can also help!</p>
+              </div>
             )}
           </div>
         </div>

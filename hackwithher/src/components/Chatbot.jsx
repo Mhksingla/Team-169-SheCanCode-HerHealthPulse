@@ -15,16 +15,16 @@ const Chatbot = () => {
   const toggleChat = () => setChatOpen(!chatOpen);
 
   const medicalConditions = {
-    Fever: "If you have a fever, drink plenty of fluids and rest. If it persists for more than 3 days, consult a doctor.",
-    "Cold & Flu": "Stay hydrated, rest, and try steam inhalation to relieve congestion. Over-the-counter medications can help with symptoms.",
-    Headache: "Drink water, rest in a dark room, and try pain relief medication if needed. Avoid stress and loud noises.",
-    "Stomach Ache": "Avoid spicy foods, drink herbal tea, and rest. Seek medical help if pain is severe or persistent.",
-    "Skin Allergy": "Avoid allergens, take antihistamines if necessary, and consult an allergist if symptoms persist.",
-    "Muscle Pain": "Apply heat or ice packs, do gentle stretching, and take over-the-counter pain relievers if needed.",
-    Hypertension: "Monitor your blood pressure regularly, reduce salt intake, exercise, and consult a doctor for medication if necessary.",
-    Diabetes: "Monitor blood sugar levels, follow a balanced diet, exercise regularly, and take prescribed medications.",
-    Anxiety: "Practice deep breathing, meditation, or yoga. Seek professional help if anxiety interferes with daily life.",
-    Acidity: "Avoid spicy and oily foods, eat smaller meals, and take antacids if needed. Consult a doctor if symptoms persist.",
+    MoodSwings: "Track your menstrual cycle, practice stress-relief techniques like yoga or meditation, and maintain a balanced diet. Consult a doctor if mood swings are severe or disruptive.",
+    PMS: "Reduce caffeine and sugar intake, exercise regularly, and get adequate sleep. Over-the-counter pain relievers can help with cramps. Consider supplements like calcium or magnesium after consulting a doctor.",
+Menopause_Related_MoodChanges: "Stay active with regular exercise, practice mindfulness, and maintain a healthy diet. Consult a healthcare provider for hormone replacement therapy (HRT) or natural remedies if needed.",
+Stress_Anxiety: "Practice relaxation techniques like meditation, journaling, or aromatherapy. Seek support from friends, family, or a therapist if needed.",
+Fatigue_LowEnergy: "Ensure adequate sleep, stay hydrated, and eat iron-rich foods. Regular exercise can boost energy levels. Consult a doctor if fatigue persists.",
+Irritability: "Identify triggers, practice calming techniques like deep breathing, and avoid over-scheduling. Prioritize downtime and self-care.",
+Depression: "Seek professional help if feelings of sadness persist. Engage in regular physical activity, maintain social connections, and consider therapy or medication if recommended.",
+Bloating: "Reduce salt intake, drink plenty of water, and eat potassium-rich foods. Gentle exercise like walking can help reduce bloating.",
+SleepDisturbances: "Establish a bedtime routine, avoid screens before bed, and create a calm sleep environment. Herbal teas like chamomile or valerian root may promote relaxation.",
+Low_Libido: "Communicate openly with your partner, manage stress, and prioritize self-care. Consult a doctor if low libido persists or is linked to hormonal changes."
   };
 
   const handleConditionClick = (condition) => {

@@ -33,6 +33,7 @@ const Navbar = ({ user }) => {
           <a href="/resource" className="text-white text-lg font-bold">
             Resources
           </a>
+        
         </div>
       )}
 

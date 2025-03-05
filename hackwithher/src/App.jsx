@@ -20,6 +20,7 @@ import Login from "./pages/Login";
 import Chatbot from "./components/Chatbot";
 import SignUp from "./pages/SignUp";
 
+
 const App = () => {
   const [user, setUser] = useState(null); // State to store user data
 
