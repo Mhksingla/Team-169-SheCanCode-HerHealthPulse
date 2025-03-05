@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC1cMZu7E9fySxIeDVfWSUzMFTc4P6L32E",
   authDomain: "women-45b54.firebaseapp.com",
@@ -15,7 +15,7 @@ const firebaseConfig = {
   measurementId: "G-PNV8M7QNKZ",
 };
 
-
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -23,24 +23,25 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    setError(""); // Clear previous errors
+
     try {
-      
+      // Sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      navigate("/"); // Navigate to the home page on success
     } catch (err) {
-      setError(err.message); 
+      setError(err.message); // Display error message
       console.error("Login error:", err);
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-pink-50 to-pink-100 relative overflow-hidden p-6">
-      {}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(10)].map((_, i) => (
           <div
@@ -58,7 +59,7 @@ const Login = () => {
         ))}
       </div>
 
-      {}
+      {/* Login Card */}
       <div className="bg-white bg-opacity-20 backdrop-blur-lg p-10 rounded-2xl shadow-2xl text-center w-full max-w-md z-10 animate-popUp mt-16 border border-white/30">
         <h2 className="text-pink-500 text-2xl font-bold mb-5 drop-shadow-lg">Welcome!</h2>
         {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
@@ -93,7 +94,7 @@ const Login = () => {
           </a>
         </p>
 
-        {}
+        {/* Social Login */}
         <div className="flex justify-center gap-5 mt-5">
           <div className="bg-white/20 p-3 border border-white/40 rounded-full cursor-pointer hover:bg-pink-500 hover:text-white transition">
             <i className="fab fa-google text-lg"></i>
@@ -107,7 +108,7 @@ const Login = () => {
         </div>
       </div>
 
-      {}
+      {/* Custom CSS for Animations */}
       <style jsx>{`
         @keyframes float {
           0% {
