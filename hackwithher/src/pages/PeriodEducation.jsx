@@ -1,62 +1,65 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-const sections = [
-  {
-    title: "Menstrual Cycle",
-    items: [
-      { heading: "Menstrual Phase", text: "Uterus sheds its lining, causing bleeding." },
-      { heading: "Follicular Phase", text: "Body prepares for ovulation by developing an egg." },
-      { heading: "Ovulation", text: "Egg is released and can be fertilized." },
-      { heading: "Luteal Phase", text: "If not fertilized, hormone levels drop." },
-    ],
-  },
-  {
-    title: "Symptoms & Self-Care",
-    items: [
-      { heading: "Menstrual Cramps", text: "Use a warm compress, gentle stretching, or pain relievers." },
-      { heading: "Bloating", text: "Drink water and eat potassium-rich foods like bananas." },
-      { heading: "Mood Swings", text: "Try relaxation techniques, exercise, or magnesium-rich foods." },
-      { heading: "Headaches", text: "Stay hydrated, reduce caffeine, and try gentle yoga." },
-    ],
-  },
-  {
-    title: "Myth vs. Fact",
-    items: [
-      { heading: "❌ Myth:", text: "You shouldn't exercise during your period." },
-      { heading: "✅ Fact:", text: "Light exercise can actually help with cramps!" },
-      { heading: "❌ Myth:", text: "You can't get pregnant while on your period." },
-      { heading: "✅ Fact:", text: "It is possible to conceive during menstruation, though it's less likely." },
-      { heading: "❌ Myth:", text: "Periods should always be exactly 28 days long." },
-      { heading: "✅ Fact:", text: "Cycle lengths vary between 21-35 days and are unique to each person." },
-    ],
-  },
-];
 
 const PeriodEducation = () => {
+  const videos = [
+    {
+      src: "/why.mp4",
+      type: "video/mp4",
+      title: "Why you get periods!",
+      description: "Periods, also known as menstruation, are a natural process that occurs in people with a uterus as part of the menstrual cycle. This cycle prepares the body for pregnancy each month. If pregnancy does not occur, the body sheds the uterine lining, resulting in bleeding, which we call a period."
+    },
+    {
+      src: "/pads.mp4",
+      type: "video/mp4",
+      title: "How to Dispose of Used Pads",
+      description: "Learn the correct and hygienic way to dispose of used sanitary pads to ensure proper waste management and hygiene."
+    },
+    {
+      src: "/types.mp4",
+      type: "video/mp4",
+      title: "Choose the right sanitary Pad",
+      description: "Selecting the right pad ensures comfort and protection. Pads vary in size, absorbency, and material to match your flow. Watch this video to find the best option for you!."
+    },
+    {
+      src: "/ovulation.mp4", 
+      type: "video/mp4",
+      title: "Trying to Concieve!! Watch it.",
+      description: "An educational guide to understanding the different phases of the menstrual cycle and how it affects your ovulation and body."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-pink-100 py-12 px-4 md:px-12 text-gray-800">
-
-      {/* Content */}
-      <div className="pt-20 max-w-4xl mx-auto space-y-12">
-        {sections.map((section, index) => (
-          <div key={index} className="bg-white p-8 rounded-lg shadow-lg">
-            <h1 className="text-3xl font-bold text-center bg-pink-600 text-white py-3 rounded-md mb-6">
-              {section.title}
-            </h1>
-            <div className="space-y-6">
-              {section.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className={`p-5 rounded-lg shadow-md bg-pink-50 transition transform ${idx % 2 === 0 ? "hover:scale-105" : "hover:scale-100"}`}
-                >
-                  <h2 className="text-xl font-semibold text-pink-700">{item.heading}</h2>
-                  <p className="text-gray-700 mt-2">{item.text}</p>
-                </div>
-              ))}
+      {}
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h1 className="text-3xl font-bold text-center bg-pink-600 text-white py-3 rounded-md mb-6">
+          Educational Videos
+        </h1>
+        <div className="space-y-8">
+          {videos.map((video, index) => (
+            <div key={index} className="flex flex-col md:flex-row items-center gap-6 bg-pink-50 p-6 rounded-lg shadow-md">
+              {video.type ? (
+                <video className="w-full md:w-1/2 h-64 rounded-lg" controls>
+                  <source src={video.src} type={video.type} />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <iframe
+                  className="w-full md:w-1/2 h-64 rounded-lg"
+                  src={video.src}
+                  title={video.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
+              <div className="md:w-1/2 text-gray-800">
+                <h2 className="text-xl font-semibold text-pink-700">{video.title}</h2>
+                <p className="mt-2 text-gray-700">{video.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
