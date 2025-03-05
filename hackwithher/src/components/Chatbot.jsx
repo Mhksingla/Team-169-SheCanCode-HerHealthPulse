@@ -1,10 +1,16 @@
-import { useState } from "react";
 import { FaRobot } from "react-icons/fa";
+import { useState, useEffect, useRef } from "react";
 
 const Chatbot = () => {
   const [chatOpen, setChatOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]); // ✅ messages is declared here
   const [input, setInput] = useState("");
+
+  const messagesEndRef = useRef(null); // ✅ Moved inside the component
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]); // ✅ Now it correctly tracks 'messages'
 
   const toggleChat = () => setChatOpen(!chatOpen);
 
@@ -35,7 +41,6 @@ const Chatbot = () => {
       setMessages((prev) => [...prev, userMessage]);
       setInput("");
 
-      // Simulate a bot response after 1 second
       setTimeout(() => {
         const botMessage = {
           text: "I'm here to help! Select a medical condition from the options below or describe your issue.",
@@ -54,64 +59,59 @@ const Chatbot = () => {
 
   return (
     <div>
-      {/* Chatbot Toggle Button */}
       <button
         aria-label="Open Health Chatbot"
-        className="fixed bottom-5 right-5 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition-transform transform hover:scale-105"
+        className="fixed bottom-5 right-5 bg-pink-500 text-white p-3 rounded-full shadow-lg hover:bg-pink-600 transition-transform transform hover:scale-105"
         onClick={toggleChat}
       >
         <FaRobot size={24} />
       </button>
 
-      {/* Chatbot Window */}
       {chatOpen && (
-        <div className="fixed bottom-16 right-5 bg-white w-80 p-4 rounded-lg shadow-lg border">
-          <div className="text-lg font-semibold border-b pb-2 mb-2">Health Chatbot</div>
-          
-          <div className="h-60 overflow-y-auto mb-2">
-            {/* Initial Bot Message */}
-            {messages.length === 0 && (
-              <div className="mb-2">
-                <p className="text-gray-700 font-medium">Bot: Select a medical condition to get advice:</p>
-                <div className="grid grid-cols-2 gap-2 mt-2 overflow-y-auto max-h-28">
-                  {Object.keys(medicalConditions).map((condition) => (
-                    <button
-                      key={condition}
-                      className="bg-blue-100 text-blue-800 p-2 rounded-md text-sm hover:bg-blue-200 transition"
-                      onClick={() => handleConditionClick(condition)}
-                    >
-                      {condition}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+        <div className="fixed bottom-16 right-5 bg-white w-96 p-4 rounded-lg shadow-lg border border-pink-300">
+          <div className="text-lg font-semibold text-pink-600 border-b pb-2 mb-2">Health Chatbot</div>
 
-            {/* Chat Messages */}
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`mb-2 p-2 rounded ${
-                  msg.user ? "bg-blue-100 text-blue-800 text-right" : "bg-gray-100 text-gray-700 text-left"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
+          <div className="h-60 overflow-y-auto mb-2">
+            <p className="text-gray-700 font-medium">Bot: Select a medical condition to get advice:</p>
+
+            <div className="flex flex-wrap gap-2 mt-2">
+              {Object.keys(medicalConditions).map((condition) => (
+                <button
+                  key={condition}
+                  className="bg-pink-100 text-pink-800 p-2 rounded-md text-sm hover:bg-pink-200 transition"
+                  onClick={() => handleConditionClick(condition)}
+                >
+                  {condition}
+                </button>
+              ))}
+            </div>
+
+            <div className="h-52 overflow-y-auto mt-2 p-2 border rounded-md">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`mt-2 p-2 rounded-md text-sm font-medium transition-all ${
+                    msg.user ? "bg-pink-500 text-white text-right" : "bg-pink-100 text-pink-800 text-left"
+                  }`}
+                >
+                  {msg.text}
+                </div>
+              ))}
+              <div ref={messagesEndRef} /> {/* ✅ Scroll to this div */}
+            </div>
           </div>
 
-          {/* Input Area */}
           <div className="flex items-center border-t pt-2">
             <input
               type="text"
-              className="flex-1 border p-2 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 border p-2 rounded-l focus:outline-none focus:ring-2 focus:ring-pink-500"
               placeholder="Type a message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleInputKeyPress}
             />
             <button
-              className="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 transition"
+              className="bg-pink-500 text-white p-2 rounded-r hover:bg-pink-600 transition"
               onClick={handleSend}
             >
               Send

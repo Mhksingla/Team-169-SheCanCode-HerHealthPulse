@@ -1,4 +1,16 @@
 import { useState, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+const markerIcon = new L.Icon({
+  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+});
+
+
 
 export default function ResourcesPage() {
   const resources = [
@@ -30,36 +42,73 @@ export default function ResourcesPage() {
   ];
 
   const [location, setLocation] = useState({ lat: 30.516086474689523, lng: 76.65720287619507 });
+  const [doctors, setDoctors] = useState([]);
+
+
+  const fetchNearbyDoctors = async (lat, lng) => {
+    const query = `
+      [out:json];
+      node["amenity"="doctors"](around:5000, ${lat}, ${lng});
+      out;
+    `;
+    const url = "https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}";
+  
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.elements) {
+        setDoctors(
+          data.elements.map((doctor) => ({
+            id: doctor.id,
+            name: doctor.tags.name || "Unknown Doctor",
+            lat: doctor.lat,
+            lng: doctor.lon,
+          }))
+        );
+      }
+    } catch (error) {
+      console.error("Error fetching doctors:", error);
+    }
+  };
+  
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setLocation({
+          const userLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
+          };
+          setLocation(userLocation);
+          fetchNearbyDoctors(userLocation.lat, userLocation.lng); // Fetch doctors after getting location
         },
         (error) => console.error("Error fetching location:", error),
         { enableHighAccuracy: true }
       );
     }
   }, []);
+  
+
+  
 
   return (
     <div className="container mx-auto p-6 min-h-screen">
       <div className="mt-8 bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Find Us on the Map</h2>
-        <iframe
-          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3437.1751352098286!2d${location.lng}!3d${location.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fc32344a6e2d7%3A0x81b346dee91799ca!2sChitkara%20University!5e0!3m2!1sen!2sin!4v1741123942799!5m2!1sen!2sin`}
-          width="100%"
-          height="450"
-          className="rounded-lg shadow-md"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <MapContainer center={location} zoom={13} style={{ height: "450px", width: "100%" }} className="rounded-lg shadow-md">
+  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+  {/* User's Location */}
+  <Marker position={location} icon={markerIcon}>
+    <Popup>Your Location</Popup>
+  </Marker>
+  {/* Nearby Doctors */}
+  {doctors.map((doctor) => (
+    <Marker key={doctor.id} position={{ lat: doctor.lat, lng: doctor.lng }} icon={markerIcon}>
+      <Popup>{doctor.name}</Popup>
+    </Marker>
+  ))}
+</MapContainer>
       </div>
       
       <h1 className="text-4xl font-extrabold text-center text-gray-800 my-8">Women's Health Resources</h1>
