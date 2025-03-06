@@ -5,8 +5,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { auth } from "../src/utils/firebaseConfig"; // Import Firebase auth
-import { onAuthStateChanged } from "firebase/auth"; // Import onAuthStateChanged
+import { auth } from "../src/utils/firebaseConfig"; 
+import { onAuthStateChanged } from "firebase/auth"; 
 import Navbar from "./components/Navbar";
 import Hero from "./pages/Hero";
 import Footer from "./components/Footer";
@@ -27,24 +27,24 @@ import AwarenessQuiz from "./pages/Quiz";
 import MenstrualWorkshops from "./pages/Workshops";
 
 const App = () => {
-  const [user, setUser] = useState(null); // State to store user data
+  const [user, setUser] = useState(null);
 
-  // Track authentication state
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user); // Set user data if logged in
+        setUser(user);
       } else {
-        setUser(null); // Clear user data if logged out
+        setUser(null); 
       }
     });
 
-    return () => unsubscribe(); // Cleanup on unmount
+    return () => unsubscribe(); 
   }, []);
 
   return (
     <Router>
-      <Navbar user={user} /> {/* Pass user data to Navbar */}
+      <Navbar user={user} />
       <Routes>
         <Route path="/" element={<Hero user={user} />} />{" "}
         <Route path="/symptomtracker" element={<SymptomTracker />} />

@@ -8,7 +8,7 @@ export default function PeriodDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-50 flex flex-col items-center justify-center p-6 space-y-12 relative">
-      {/* Back Button */}
+   
       <button
         onClick={() => navigate(-1)}
         className="absolute top-5 left-5 bg-pink-600 text-white px-5 py-2 rounded-full text-lg shadow-lg transition-transform hover:scale-110"
@@ -16,14 +16,14 @@ export default function PeriodDashboard() {
         ← Back
       </button>
 
-      {/* Layout */}
+    
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between space-y-10 md:space-y-0">
-        {/* Left Image (Subtle Shadow & Rounded) */}
+       
         <div className="md:w-1/3 flex justify-center md:justify-start">
           <img src={LeftImage} alt="Cycle Tracking" className="w-40 h-40 md:w-48 md:h-70 rounded-xl shadow-lg" />
         </div>
 
-        {/* Main Content (Centered & Elegant) */}
+       
         <div className="text-center md:w-2/3">
           <h1 className="text-4xl md:text-5xl font-extrabold text-pink-700 mb-4">
             Track Your Cycle with Ease
@@ -33,7 +33,7 @@ export default function PeriodDashboard() {
             designed to help you feel more confident and informed.
           </p>
 
-          {/* Features Section (Modern Grid) */}
+         
           <div className="grid sm:grid-cols-2 gap-6 mt-8">
             <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
               <h2 className="text-2xl font-semibold text-pink-700">Accurate Predictions</h2>
@@ -61,7 +61,7 @@ export default function PeriodDashboard() {
             </div>
           </div>
 
-          {/* Get Started Button */}
+         
           <a
             href="/periodcalendar"
             className="bg-pink-600 text-white py-4 px-8 rounded-full text-xl font-semibold shadow-lg transition-transform hover:scale-110 mt-8 inline-block"
@@ -70,7 +70,7 @@ export default function PeriodDashboard() {
           </a>
         </div>
 
-        {/* Right Image (Subtle Shadow & Rounded) */}
+       
         <div className="md:w-1/3 flex justify-center md:justify-end">
           <img src={RightImage} alt="Health Insights" className="w-40 h-40 md:w-48 md:h-55 rounded-xl shadow-lg" />
         </div>

@@ -37,13 +37,13 @@ export default function MensGuide() {
           A safe space to discuss concerns, share experiences, and support each other.
         </p>
 
-        {/* Pinned Post (Expert Advice) */}
+      
         <div className="bg-yellow-50 p-4 rounded-lg shadow-md border border-yellow-300 mb-6">
           <h3 className="text-lg font-semibold text-yellow-700">📌 Expert Advice</h3>
           <p className="text-gray-700">It's important to communicate openly and be empathetic to your partner's needs. A simple check-in can make a huge difference!</p>
         </div>
 
-        {/* Forum Section */}
+      
         <div className="bg-pink-50 p-6 rounded-lg shadow-md border border-pink-200 mt-8 w-full">
           <h3 className="text-2xl font-semibold text-pink-700 mb-4">💬 Discussions</h3>
           <div className="space-y-4 max-h-80 overflow-y-auto p-2">
