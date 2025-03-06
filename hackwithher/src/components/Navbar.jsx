@@ -21,28 +21,28 @@ const Navbar = ({ user }) => {
       <img src={LOGO} alt="Logo" className="w-20 h-16 rounded-md" />
       {user && (
         <div className="flex gap-5">
-          <a href="/periodashboard" className="text-white text-sm font-bold">
-            Period Dashboard
+          <a href="/periodashboard" className="text-white text-md font-bold">
+            Track your Periods
           </a>
-          <a href="/periodeducation" className="text-white text-sm font-bold">
+          <a href="/periodeducation" className="text-white text-md font-bold">
             Period Education
           </a>
-          <a href="/symptomtracker" className="text-white text-sm font-bold">
-            Symptom Tracker
+          <a href="/symptomtracker" className="text-white text-md font-bold">
+            Mood Tracker
           </a>
-          <a href="/resource" className="text-white text-sm font-bold">
-            Resources
+          <a href="/resource" className="text-white text-md font-bold">
+            Nearby Consultants
           </a>          
-          <a href="/pcodtracker" className="text-white text-sm font-bold">
+          <a href="/pcodtracker" className="text-white text-md font-bold">
             PCOD Tracker
           </a>
-          <a href="/govtschemes" className="text-white text-sm font-bold">
+          <a href="/govtschemes" className="text-white text-md font-bold">
             Govt.Schemes
           </a>
         </div>
       )}
 
-      <div className="flex items-center bg-white rounded-full p-2 shadow-md transition-all">
+      {/* <div className="flex items-center bg-white rounded-full p-2 shadow-md transition-all">
         <input
           type="text"
           placeholder="Search..."
@@ -51,7 +51,7 @@ const Navbar = ({ user }) => {
           className="outline-none px-3 py-1 rounded-full w-64 text-pink-500 placeholder-pink-300 focus:w-72 focus:bg-pink-100 transition-all"
         />
         <FaSearch className="text-pink-500 ml-2 cursor-pointer hover:text-pink-700 transition-colors" />
-      </div>
+      </div> */}
 
       {user && (
         <div className="relative">
