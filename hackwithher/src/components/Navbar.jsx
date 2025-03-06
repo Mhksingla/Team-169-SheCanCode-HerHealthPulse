@@ -17,27 +17,31 @@ const Navbar = ({ user }) => {
   };
 
   return (
-    <nav className="bg-pink-500 p-4 flex items-center justify-between gap-5">
+    <nav className="bg-pink-500 p-4 flex items-center justify-between gap-3">
       <img src={LOGO} alt="Logo" className="w-20 h-16 rounded-md" />
       {user && (
         <div className="flex gap-5">
-          <a href="/periodashboard" className="text-white text-lg font-bold">
+          <a href="/periodashboard" className="text-white text-sm font-bold">
             Period Dashboard
           </a>
-          <a href="/periodeducation" className="text-white text-lg font-bold">
+          <a href="/periodeducation" className="text-white text-sm font-bold">
             Period Education
           </a>
-          <a href="/symptomtracker" className="text-white text-lg font-bold">
+          <a href="/symptomtracker" className="text-white text-sm font-bold">
             Symptom Tracker
           </a>
-          <a href="/resource" className="text-white text-lg font-bold">
+          <a href="/resource" className="text-white text-sm font-bold">
             Resources
+          </a>          
+          <a href="/pcodtracker" className="text-white text-sm font-bold">
+            PCOD Tracker
           </a>
-        
+          <a href="/govtschemes" className="text-white text-sm font-bold">
+            Govt.Schemes
+          </a>
         </div>
       )}
 
-      {/* Search Bar */}
       <div className="flex items-center bg-white rounded-full p-2 shadow-md transition-all">
         <input
           type="text"
@@ -49,7 +53,6 @@ const Navbar = ({ user }) => {
         <FaSearch className="text-pink-500 ml-2 cursor-pointer hover:text-pink-700 transition-colors" />
       </div>
 
-      {/* Display user's name and icon if logged in */}
       {user && (
         <div className="relative">
           <div

@@ -19,7 +19,8 @@ import ResourcesPage from "./pages/Resource";
 import Login from "./pages/Login";
 import Chatbot from "./components/Chatbot";
 import SignUp from "./pages/SignUp";
-
+import PCODTracker from "./pages/PcodTracker";
+import GovtSchemes from "./pages/GovtScheme";
 
 const App = () => {
   const [user, setUser] = useState(null); // State to store user data
@@ -70,6 +71,14 @@ const App = () => {
         <Route
           path="/signup"
           element={<SignUp />}
+        />
+                <Route
+          path="/pcodtracker"
+          element={<PCODTracker />}
+        />
+                        <Route
+          path="/govtschemes"
+          element={<GovtSchemes />}
         />
       </Routes>
       <Chatbot />
