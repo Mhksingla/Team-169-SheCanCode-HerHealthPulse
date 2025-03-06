@@ -6,7 +6,7 @@ export default function SymptomTracker() {
   );
   const [selectedMood, setSelectedMood] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [isPeriodMood, setIsPeriodMood] = useState(false); // Track if mood is period-related
+  const [isPeriodMood, setIsPeriodMood] = useState(false); 
 
   const moodColors = {
     "😊": "bg-yellow-400",
@@ -18,27 +18,27 @@ export default function SymptomTracker() {
 
   const moodRecommendations = {
     "😊": {
-      audio: "/flute.mp3", // Replace with your audio file path
+      audio: "/flute.mp3", 
       food: ["Fruits 🍉", "Dark Chocolate 🍫", "Nuts 🥜"],
       periodRecommendation: "Enjoy light exercises like yoga or a walk in nature to maintain your positive mood.",
     },
     "😢": {
-      audio: "/flute.mp3", // Replace with your audio file path
+      audio: "/flute.mp3", 
       food: ["Bananas �", "Oatmeal 🥣", "Tea ☕"],
       periodRecommendation: "Take a warm bath, practice deep breathing, and allow yourself to rest.",
     },
     "😡": {
-      audio: "/flute.mp3", // Replace with your audio file path
+      audio: "/flute.mp3", 
       food: ["Green Tea 🍵", "Salmon 🐟", "Avocado 🥑"],
       periodRecommendation: "Try journaling or mindfulness meditation to process your emotions.",
     },
     "😌": {
-      audio: "/sound3.mp3", // Replace with your audio file path
+      audio: "/sound3.mp3", 
       food: ["Herbal Tea 🌿", "Yogurt 🍦", "Almonds 🌰"],
       periodRecommendation: "Maintain your calm with gentle stretching or a cup of herbal tea.",
     },
     "😴": {
-      audio: "/sound1.mp3", // Replace with your audio file path
+      audio: "/sound1.mp3", 
       food: ["Warm Milk 🥛", "Chamomile Tea 🍵", "Honey 🍯"],
       periodRecommendation: "Get extra rest, and consider a short nap or a warm drink before bed.",
     },
@@ -53,10 +53,10 @@ export default function SymptomTracker() {
     const today = new Date().toISOString().split("T")[0];
     setMoods((prevMoods) => [
       ...prevMoods,
-      { date: today, mood, isPeriodMood }, // Include period mood flag
+      { date: today, mood, isPeriodMood }, 
     ]);
     setSelectedMood(mood);
-    setShowModal(true); // Show the modal when a mood is selected
+    setShowModal(true); 
   };
 
   const moodCounts = moods.reduce((acc, entry) => {
@@ -72,7 +72,7 @@ export default function SymptomTracker() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-5xl flex flex-col gap-8">
-        {/* Mood Selection Section */}
+        {}
         <div className="space-y-6">
           <h2 className="text-3xl font-bold text-gray-800">Track Your Mood</h2>
           <select
@@ -114,7 +114,7 @@ export default function SymptomTracker() {
           </button>
         </div>
 
-        {/* Mood Frequency Bar Chart */}
+        {}
         <div className="space-y-4">
           <h2 className="text-xl font-bold text-gray-700">Mood Frequency</h2>
           <div className="bg-gray-100 p-4 rounded-lg shadow-md">
@@ -138,7 +138,7 @@ export default function SymptomTracker() {
         </div>
       </div>
 
-      {/* Mood-Based Recommendations Modal */}
+      {}
       {showModal && selectedMood && moodRecommendations[selectedMood] && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md">

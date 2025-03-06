@@ -18,15 +18,15 @@ export default function PCODTracker() {
   const [user, setUser] = useState(null);
   const [isPCODDetected, setIsPCODDetected] = useState(false);
   const [quizAnswers, setQuizAnswers] = useState({});
-  const [showQuiz, setShowQuiz] = useState(true); // Show quiz only once
-  const [quizCompleted, setQuizCompleted] = useState(false); // Track if quiz is completed
+  const [showQuiz, setShowQuiz] = useState(true); 
+  const [quizCompleted, setQuizCompleted] = useState(false); 
 
-  // PCOD Symptoms and Questions
+  
   const pcodQuizQuestions = [
     {
       question: "Do you experience irregular periods?",
       key: "irregularPeriods",
-      weight: 2, // Higher weight for critical symptoms
+      weight: 2, 
       icon: <FaCalendarAlt className="text-pink-500" />,
     },
     {
@@ -104,33 +104,33 @@ export default function PCODTracker() {
   const evaluatePCOD = () => {
     let totalRiskScore = 0;
 
-    // Calculate risk score based on quiz answers
+   
     pcodQuizQuestions.forEach((question) => {
       const answer = quizAnswers[question.key];
 
       if (question.options) {
         // Handle multiple-choice questions
         if (answer === "Less than 21 days" || answer === "More than 35 days") {
-          totalRiskScore += question.weight; // Irregular cycle length
+          totalRiskScore += question.weight; 
         }
         if (answer === "Less than 2 days" || answer === "More than 7 days") {
-          totalRiskScore += question.weight; // Irregular period duration
+          totalRiskScore += question.weight;
         }
       } else if (answer === "yes") {
-        // Handle yes/no questions
+        
         totalRiskScore += question.weight;
       }
     });
 
-    // PCOD detection logic
+    
     if (totalRiskScore >= 6) {
       setIsPCODDetected(true);
     } else {
       setIsPCODDetected(false);
     }
 
-    setQuizCompleted(true); // Mark quiz as completed
-    setShowQuiz(false); // Hide quiz after submission
+    setQuizCompleted(true); 
+    setShowQuiz(false); 
   };
 
   return (
@@ -224,7 +224,7 @@ export default function PCODTracker() {
               </div>
             )}
 
-            {/* PCOD Suggestion */}
+            {}
             {isPCODDetected && (
               <div className="mt-6 p-6 bg-pink-50 rounded-lg shadow">
                 <div className="flex items-center space-x-3">
@@ -249,7 +249,7 @@ export default function PCODTracker() {
               </div>
             )}
 
-            {/* Quiz Completed but No PCOD Detected */}
+            {}
             {quizCompleted && !isPCODDetected && (
               <div className="mt-6 p-6 bg-pink-50 rounded-lg shadow">
                 <div className="flex items-center space-x-3">

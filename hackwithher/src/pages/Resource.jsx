@@ -81,7 +81,7 @@ export default function ResourcesPage() {
             lng: position.coords.longitude,
           };
           setLocation(userLocation);
-          fetchNearbyDoctors(userLocation.lat, userLocation.lng); // Fetch doctors after getting location
+          fetchNearbyDoctors(userLocation.lat, userLocation.lng); 
         },
         (error) => console.error("Error fetching location:", error),
         { enableHighAccuracy: true }
@@ -98,11 +98,11 @@ export default function ResourcesPage() {
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Find Us on the Map</h2>
         <MapContainer center={location} zoom={13} style={{ height: "450px", width: "100%" }} className="rounded-lg shadow-md">
   <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-  {/* User's Location */}
+  {}
   <Marker position={location} icon={markerIcon}>
     <Popup>Your Location</Popup>
   </Marker>
-  {/* Nearby Doctors */}
+  {}
   {doctors.map((doctor) => (
     <Marker key={doctor.id} position={{ lat: doctor.lat, lng: doctor.lng }} icon={markerIcon}>
       <Popup>{doctor.name}</Popup>

@@ -13,7 +13,7 @@ export default function PeriodCalendar() {
   const [fertileWindow, setFertileWindow] = useState([]);
   const [ovulationDay, setOvulationDay] = useState(null);
 
-  // Load saved dates from localStorage on component mount
+  
   useEffect(() => {
     const storedDates = JSON.parse(localStorage.getItem("periodDates")) || [];
     setSavedDates(storedDates);
@@ -24,17 +24,17 @@ export default function PeriodCalendar() {
     }
   }, []);
 
-  // Check for upcoming period
+ 
   useEffect(() => {
     checkUpcomingPeriod();
   }, [date]);
 
-  // Check if today is within the period range
+  
   useEffect(() => {
     checkTodayPeriodMessage();
   }, []);
 
-  // Calculate fertile window and ovulation day when conceive is true
+  
   useEffect(() => {
     if (conceive && savedDates.length > 0) {
       const lastSaved = savedDates[savedDates.length - 1];
@@ -53,7 +53,7 @@ export default function PeriodCalendar() {
     }
   }, [conceive, savedDates, date]);
 
-  // Handle day selection
+ 
   const handleDayClick = (day) => {
     if (!firstDay) {
       setFirstDay(day);
@@ -66,7 +66,7 @@ export default function PeriodCalendar() {
     }
   };
 
-  // Save selected dates to localStorage
+  
   const saveDates = () => {
     if (firstDay && lastDay) {
       const newDates = [...savedDates, { month: date.getMonth(), firstDay, lastDay }];
@@ -78,7 +78,7 @@ export default function PeriodCalendar() {
     }
   };
 
-  // Check for upcoming period and alert the user
+  
   const checkUpcomingPeriod = () => {
     if (savedDates.length > 0) {
       const lastSaved = savedDates[savedDates.length - 1];
@@ -88,7 +88,7 @@ export default function PeriodCalendar() {
     }
   };
 
-  // Check if today is within the period range and alert the user
+ 
   const checkTodayPeriodMessage = () => {
     const storedDates = JSON.parse(localStorage.getItem("periodDates")) || [];
     if (storedDates.length > 0) {
@@ -101,18 +101,18 @@ export default function PeriodCalendar() {
     }
   };
 
-  // Generate calendar days with correct alignment
+  
   const generateCalendarDays = () => {
     const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-    const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay(); 
     const days = [];
 
-    // Add empty cells for days before the first day of the month
+    
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(null);
     }
 
-    // Add days of the month
+    
     for (let i = 1; i <= daysInMonth; i++) {
       days.push(i);
     }
@@ -120,23 +120,23 @@ export default function PeriodCalendar() {
     return days;
   };
 
-  // Navigate to previous month
+ 
   const goToPreviousMonth = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1));
   };
 
-  // Navigate to next month
+  
   const goToNextMonth = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
   };
 
-  // Format saved dates for display
+  
   const formatSavedDates = () => {
     return savedDates
       .sort((a, b) => {
         const dateA = new Date(date.getFullYear(), a.month, a.firstDay);
         const dateB = new Date(date.getFullYear(), b.month, b.firstDay);
-        return dateB - dateA; // Sort in descending order (latest first)
+        return dateB - dateA; 
       })
       .map((entry, index) => {
         const monthName = new Date(date.getFullYear(), entry.month).toLocaleString("default", { month: "long" });
@@ -163,13 +163,13 @@ export default function PeriodCalendar() {
         📝 Cute Notes
       </button>
 
-      {/* Main Container */}
+      {}
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full">
         <h1 className="text-3xl font-bold text-pink-600 mb-4">Track Your Period</h1>
 
-        {/* Calendar Section */}
+        {}
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Left Section - Calendar */}
+          {}
           <div className="flex-1">
             <div className="flex justify-between items-center mb-4">
               <button
@@ -214,7 +214,7 @@ export default function PeriodCalendar() {
             </div>
           </div>
 
-          {/* Right Section - Details */}
+          {}
           <div className="flex-1 text-left">
             <p className="text-gray-700 mb-2">First day of your period:</p>
             <input
@@ -263,7 +263,7 @@ export default function PeriodCalendar() {
         </div>
       </div>
 
-      {/* Saved Dates Section */}
+      {}
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full mt-8">
         <h2 className="text-xl font-bold text-pink-600 mb-4">Saved Period Dates</h2>
         <div className="mt-2">

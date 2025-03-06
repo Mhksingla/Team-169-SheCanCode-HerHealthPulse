@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { auth } from "../utils/firebase"; // Import Firebase auth
+import { auth } from "../utils/firebase"; 
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom"; // For redirection
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -11,7 +11,7 @@ export default function SignUp() {
     confirmPassword: "",
   });
 
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,14 +24,14 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if passwords match
+    
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
     try {
-      // Create user with Firebase
+      
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
@@ -39,17 +39,17 @@ export default function SignUp() {
       );
       console.log("User created:", userCredential.user);
 
-      // Redirect to login page after successful signup
+      
       navigate("/login");
     } catch (error) {
       console.error("Error signing up:", error.message);
-      alert(error.message); // Show error message to user
+      alert(error.message); 
     }
   };
 
   return (
     <>
-      {/* Add CSS animations in a <style> tag */}
+      {}
       <style>
         {`
           @keyframes gradientShift {
@@ -122,18 +122,18 @@ export default function SignUp() {
         `}
       </style>
 
-      {/* Main Container */}
+      {}
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-pink-50 to-pink-100 relative overflow-hidden">
-        {/* Background Animation */}
+        {}
         <div className="absolute inset-0 animate-gradient-shift"></div>
 
-        {/* Floating Shapes */}
+        {}
         <div className="shape circle top-20 left-10"></div>
         <div className="shape triangle top-40 right-20"></div>
         <div className="shape square bottom-20 left-1/4"></div>
         <div className="shape circle bottom-10 right-10"></div>
 
-        {/* Form Container */}
+        {}
         <div className="bg-white bg-opacity-95 p-8 rounded-xl shadow-xl text-center w-full max-w-md z-10 animate-float">
           <h2 className="text-2xl font-bold text-pink-600 mb-5">Create an Account</h2>
           <input
