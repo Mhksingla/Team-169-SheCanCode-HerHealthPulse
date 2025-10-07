@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
-// ✅ Working config for Tailwind + React + Vite
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: './', // Important for Vercel
+  plugins: [react(),tailwindcss()],
 })
